@@ -40,4 +40,10 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+    <repository>
+        <id>artifactory</id>
+        <url>http://13.232.4.124/:8081/artifactory/maven-jenkins</url>
+    </repository>
+</distributionManagement>     
 </project>
