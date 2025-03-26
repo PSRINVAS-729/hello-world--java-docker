@@ -6,7 +6,7 @@
     <packaging>maven-plugin</packaging>
     <version>3.6.2</version>
     <name>Artifactory Maven plugin</name>
-    <url>https://www.jfrog.com/confluence/display/JFROG/Maven+Artifactory+Plugin</url>
+    <url>http://13.232.4.124:8081/artifactory/webapp/#/artifacts/browse/tree/General/</url>
     <description>A Maven plugin to resolve artifacts from Artifactory, deploy artifacts to Artifactory, capture and
         publish build info.
     </description>
