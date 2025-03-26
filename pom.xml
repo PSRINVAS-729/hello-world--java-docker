@@ -43,7 +43,7 @@
     <distributionManagement>
     <repository>
         <id>artifactory</id>
-        <url>http://13.232.4.124/:8081/artifactory/maven-jenkins</url>
+        <url>http://35.154.171.13:8081/artifactory/</url>
     </repository>
 </distributionManagement>     
 </project>
