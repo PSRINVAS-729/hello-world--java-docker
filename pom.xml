@@ -28,6 +28,16 @@
         <sonar.projectName>demo</sonar.projectName> <!-- Project name in SonarQube -->
         <sonar.projectVersion>1.0-SNAPSHOT</sonar.projectVersion> <!-- Project version in SonarQube -->
     </properties>
+    <distributionManagement>
+    <repository>
+        <id>artifactory-release</id>
+        <url>http://13.232.4.124:8081/artifactory/webapp/#/artifacts/browse/tree/General/example-repo-local</url>
+    </repository>
+    <snapshotRepository>
+        <id>artifactory-snapshot</id>
+        <url>http://13.232.4.124:8081/artifactory/webapp/#/artifacts/browse/tree/General/example-repo-local</url>
+    </snapshotRepository>
+</distributionManagement>
 
     <dependencies>
         <!-- Spring Boot dependencies -->
