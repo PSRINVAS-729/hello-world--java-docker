@@ -43,7 +43,7 @@
     <distributionManagement>
     <repository>
         <id>artifactory</id>
-        <url>http://35.154.171.13:8081/artifactory/</url>
+        <url>http://43.204.22.87/:8081/</url>
     </repository>
 </distributionManagement>     
 </project>
