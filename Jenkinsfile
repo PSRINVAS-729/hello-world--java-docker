@@ -16,7 +16,7 @@ pipeline {
 
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/PSRINVAS-729/hello-world--java-docker.git'
+                checkout scm
             }
         }
 
