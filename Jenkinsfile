@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        s3Bucket = "myartifactor"
-        scannerHome = tool name: 'sonar-scanner'
+        s3Bucket = "tests3k8sdemo"
+        scannerHome = tool name: 'sonar-server'
         ecrrepo = "619071336245.dkr.ecr.ap-south-1.amazonaws.com/demo"
     }
 
