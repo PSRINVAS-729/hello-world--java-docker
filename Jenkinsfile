@@ -117,7 +117,7 @@ pipeline {
         failure {
             echo "Pipeline failed"
             // Send notification on failure (example with email)
-            mail to: 'srinivasdevops381@gmail.com',
+            #mail to: 'srinivasdevops381@gmail.com',
                  subject: "Jenkins Pipeline Failed: ${JOB_NAME}",
                  body: "Pipeline failed at stage: ${env.STAGE_NAME}\nError: ${currentBuild.result}"
         }
