@@ -53,73 +53,7 @@ pipeline {
                 }
             }
         }
-
-        stage('Trivy File Scan') {
-            steps {
-                sh "trivy fs . > trivy-fs_report.txt"
-            }
-        }
-
-        stage('OWASP Dependency Check') {
-            steps {
-                dependencyCheck additionalArguments: '--scan ./ --format XML', odcInstallation: 'DP-Check'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
-
-        stage('Upload to S3') {
-            steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials-id']]) {
-                    sh "aws s3 cp target/*.jar s3://${s3Bucket}/${JOB_NAME}-${BUILD_NUMBER}/"
-                }
-            }
-        }
-
-        stage('Docker Build & Push to AWS ECR') {
-            steps {
-                script {
-                    try {
-                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials-id']]) {
-                            sh """
-                                aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin ${ecrrepo}
-                                docker build -t demo .
-                                docker tag demo ${ecrrepo}:latest
-                                docker push ${ecrrepo}:latest
-                            """
-                        }
-                    } catch (err) {
-                        currentBuild.result = 'FAILURE'
-                        error "Docker Build & Push to AWS ECR failed!"
-                    }
-                }
-            }
-        }
-
-        stage('TRIVY Image Scan') {
-            steps {
-                script {
-                    try {
-                        sh "trivy image ${ecrrepo}:latest > trivy.json"
-                    } catch (err) {
-                        currentBuild.result = 'FAILURE'
-                        error "Trivy Image Scan failed!"
-                    }
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            echo "Pipeline completed successfully."
-            // You can send success notifications here, if needed
-        }
-        failure {
-            echo "Pipeline failed"
-            // Send notification on failure (example with email)
-            mail to: 'srinivasdevops381@gmail.com',
-                 subject: "Jenkins Pipeline Failed: ${JOB_NAME}",
-                 body: "Pipeline failed at stage: ${env.STAGE_NAME}\nError: ${currentBuild.result}"
-        }
     }
 }
+	
+
