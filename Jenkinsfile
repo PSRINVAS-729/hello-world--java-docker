@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         s3Bucket = "tests3k8sdemo"
-        scannerHome = tool name: 'sonar-server'
+        scannerHome = tool name: 'sonar-scanner'
         ecrrepo = "619071336245.dkr.ecr.ap-south-1.amazonaws.com/demo"
     }
 
@@ -35,9 +35,9 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv('sonar-scanner') {
                     sh """
-                        ${scannerHome}/bin/sonar-scanner \
+                        ${scannerHome}/bin/sonar-server \
                         -Dsonar.projectName=jenkins \
                         -Dsonar.projectKey=jenkins \
                         -Dsonar.java.binaries=target/classes \
